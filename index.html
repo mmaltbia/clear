@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="clear">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clear</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js">
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap-editable/css/bootstrap-editable.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js"></script>
+  <script src="script.js"></script>
+  <script src="controllers.js"></script>
+
+</head>
+<body ng-controller="MainCtrl">
+  <div id="container" class="container">
+    <img src="images/logo.png" id="logo">
+    <div class="row">
+      <!-- Side Bar -->
+      <div id="side-container" class="col-sm-4">
+
+        <div class="col-sm-10 col-sm-offset-1">
+          <form class="form-inline">
+            <input class="form-control" type="text">
+            <button class="btn btn-default" type="submit">Search</button>
+          </form>
+        </div>
+
+        <!-- Button trigger modal -->
+        <div>
+          <button type="button" id="add-project-btn" class="btn btn-primary btn-lg col-sm-10 col-sm-offset-1" data-toggle="modal" data-target="#new-project-modal">
+            + New Project
+          </button>
+        </div>
+
+        <!-- Begin New Project Modal -->
+        <div class="modal fade" id="new-project-modal" ng-model="newProjectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Project</h4>
+              </div>
+              <div class="modal-body">
+                <form class="new-project-form" ng-submit="submit()">
+                    <input id="project-name" class="form-group col-sm-12" ng-model="projectName" placeholder="Project Name" type="text" />
+                    <textarea id="project-description" ng-model="projectDescription" placeholder="Description"></textarea>
+                    <button id="modal-close-btn" ng-click="closeModal()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-default" type="submit" id="submit" text="submit">Add Project</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>   
+        <!-- End New Project Modal -->
+
+        <!-- Begin List of Projects -->
+        <div>
+          <ul id="project-list" class="col-sm-10 col-sm-offset-1">
+            <li class="project-name" ng-model="projectName" ng-repeat="project in projects">
+              <a href="javascript:void(0)" ng-click="projectDetailsFunction(project)">{{project.name}}</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Main Container -->
+      <div id="main-container" class="col-sm-8">
+
+        <div id="main-project-name" ng-hide="project.h1" ng-click="project.editName = true; project.h1=true; project.editDescription = true; project.description = true; editProjectDetails()">
+        </div>
+
+        <form ng-show="project.editName" ng-model="nameInput" class="row">
+          <input id="edit-name" class="col-sm-8" ng-model="nameInput" type="text">
+          <span class="col-sm-1"></span>
+          <button id="save-changes" class="col-sm-3 btn btn-primary" ng-click="saveChanges()">Save Changes</button>
+        </form>
+
+        <div id="main-project-description" ng-hide="project.description" ng-click="project.editDescription = true; project.description = true; editProjectDetails()"></div>
+        <form ng-show="project.editDescription">
+          <textarea id="edit-description" class="form-control" ng-model="descriptionInput"><!-- {{projectDetails.description}} --></textarea>
+        </form>
+
+        <div>
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Dashboard</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">To Do</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Wireframes</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">User Narratives</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+
+            <!-- Dashboard -->
+            <div role="tabpanel" class="tab-pane active" id="home">Dashboard</div>
+            <!-- To Do -->
+            <div role="tabpanel" class="tab-pane" id="profile">
+              <div class="row col-sm-12">
+                <div class="col-sm-4 text-center">
+                  <h4><button id="add-task" ng-click="addTaskDiv()"><span class="glyphicon glyphicon-plus"></span></button> To Do</h4>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <h4>In Progress</h4>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <h4>Completed</h4>
+                </div>
+              </div>
+              <div id="todo" class="col-sm-4">
+
+              </div>
+              <div id="in-progress" class="col-sm-4">
+                
+              </div>
+              <div id="completed" class="col-sm-4">
+                
+
+              </div>
+            </div>
+            <!-- Wireframes -->
+            <div role="tabpanel" class="tab-pane" id="messages">Wireframes</div>
+            <!-- User Narratives -->
+            <div role="tabpanel" class="tab-pane" id="settings">User Narratives</div>
+          </div>
+
+        </div>
+        <!-- End Tab panes -->
+  
+      </div>
+    </div>    
+  </div>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

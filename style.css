@@ -1,0 +1,142 @@
+#container {
+	margin-top: 40px;
+}
+#logo {
+    height: 60px;
+    margin-top: -20px;
+    margin-left: -18px;
+    margin-bottom: 20px;
+}
+
+body {
+	background: url('/images/mountain.jpg') no-repeat 25% 25% fixed;
+	background-size: cover;
+}
+
+textarea {
+	resize: none;
+}
+
+.container {
+	margin-top: 100px;
+}
+
+#side-container {
+	background-color: rgba(255, 255, 255, 0.3);
+	padding: 25px;
+    min-height: 700px;
+    border: solid 5px #fff;	
+    border-right: 0px;
+}
+
+#add-project-btn {
+	top: 20px;
+	background-color: rgb(255, 62, 7);
+    color: #fff;
+    border: none;
+}
+
+#project-list {
+	margin-top: 45px;
+	list-style: none;
+	padding-left: 0px;
+	padding-bottom: 0px;
+}
+
+.project-name{
+	padding-bottom: 15px;
+	font-size: 16px;
+}
+
+/*Modal Styling-------------------------------------------------------*/
+#project-description {
+    width: 568px;
+    height: 170px;
+}
+
+#main-container {
+	background-color: rgba(255, 255, 255, 0.3);
+	border: solid 5px #fff;
+	padding: 25px;	
+	min-height: 700px;
+	border: solid 5px #fff;
+}
+
+#edit-name{
+	left: 16px;
+}
+
+#edit-description {
+	height: 250px;
+}
+
+#save-changes {
+	right: 14px;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+}
+
+/*Nav Tab Styling----------------------------------------------------*/
+tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #FFF;
+    cursor: default;
+    background-color: rgb(184, 192, 192);
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+ul.nav a {
+	color: #fff;
+}
+
+/*To Do Styling------------------------------------------------------*/
+.task {
+    border: none;
+    border-radius: 2px;
+    background-color: #FF7C07;
+    width: 183px;
+    padding-top: 20px;
+    padding-left: 11px;
+    z-index: 10;
+    box-shadow: 2px 1px #BE5D05;
+}
+
+#add-task {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: none;
+}
+
+#add-task:focus {
+	outline: none;
+}
+
+.task textarea {
+    overflow: auto;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.69);
+}
+
+.task:focus{
+	outline: none;
+}
+
+#todo {
+    height: 500px;
+    border-top: solid 5px #FF3E07;
+}
+
+/*In Progress Styling------------------------------------------------------*/
+
+#in-progress {
+	height: 500px;
+	border-top: solid 5px #FFC702;	
+}
+
+/*Completed Styling---------------------------------------------------------*/
+#completed {
+	height: 500px;
+	border-top: solid 5px #9EBF2C;
+}
